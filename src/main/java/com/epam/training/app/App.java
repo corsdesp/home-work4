@@ -13,7 +13,7 @@ public class App {
                 new Person("Louie", new GregorianCalendar(1986, 1, 20).getTime(), 44444),
         };
 
-        Arrays.sort(persons, new BirthdayPersonComparator().thenComparing(new PassportPersonComparator()));
+        Arrays.sort(persons);
         for (Person person : persons) {
             System.out.println(person.toString());
         }

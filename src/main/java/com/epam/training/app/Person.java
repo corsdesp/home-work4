@@ -2,14 +2,14 @@ package com.epam.training.app;
 
 import java.util.Date;
 
-public class Person {
+public class Person implements Comparable<Person> {
     private String name;
     private Date birthday;
     private int passport;
 
     public Person(String name, Date birthday, int passport) {
         this.name = name;
-        this.birthday = birthday;
+        this.birthday = (Date) birthday.clone();
         this.passport = passport;
     }
 
@@ -22,7 +22,7 @@ public class Person {
     }
 
     public Date getBirthday() {
-        return birthday;
+        return (Date) birthday.clone();
     }
 
     public void setBirthday(Date birthday) {
@@ -65,5 +65,10 @@ public class Person {
                 ", birthday=" + birthday +
                 ", passport=" + passport +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Person other) {
+        return new BirthdayPersonComparator().thenComparing(new PassportPersonComparator()).compare(this, other);
     }
 }
